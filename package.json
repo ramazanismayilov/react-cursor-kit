@@ -2,8 +2,15 @@
   "name": "react-cursor-kit",
   "version": "1.0.0",
   "description": "A customizable cursor follower component for React",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js"
+    }
+  },
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
@@ -26,12 +33,23 @@
     "dist"
   ],
   "keywords": [
-    "react",
     "cursor",
+    "mouse",
+    "react-cursor",
     "custom-cursor",
+    "custom-mouse",
     "cursor-follow",
-    "ui"
+    "cursor-kit",
+    "trailing-cursor"
   ],
-  "author": "",
-  "license": "MIT"
+  "author": "Ramazan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramazanismayilov/react-cursor-kit"
+  },
+  "bugs": {
+    "url": "https://github.com/ramazanismayilov/react-cursor-kit/issues"
+  },
+  "homepage": "https://github.com/ramazanismayilov/react-cursor-kit#readme"
 }

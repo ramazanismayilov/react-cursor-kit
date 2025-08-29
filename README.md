@@ -130,51 +130,6 @@ export default App;
 />
 ```
 
-## 🔧 Advanced Configuration
-
-### Custom Clickable Elements
-
-By default, the cursor automatically detects standard clickable elements like `<a>`, `<button>`, form inputs, and elements with `onclick` handlers. When hovering over these elements:
-
-- Outer cursor size increases by 20%
-- Border width increases by 1px
-- Smooth transition animations apply
-
-You can also add custom clickable behavior by using CSS classes or data attributes:
-
-```tsx
-// These elements will trigger hover effects
-<div className="cursor-pointer">Custom clickable</div>
-<div data-clickable="true">Another clickable element</div>
-```
-
-### Performance Optimization
-
-The component is optimized for performance with:
-
-- **React.memo** - Prevents unnecessary re-renders
-- **useCallback** - Memoizes event handlers
-- **useMemo** - Caches expensive calculations
-- **RequestAnimationFrame** - Smooth 60fps animations
-- **GPU Acceleration** - Uses `translate3d` for hardware acceleration
-
-### Responsive Design
-
-The cursor automatically adapts to:
-
-- Window resizing
-- Viewport boundaries
-- Mobile devices (gracefully hides on touch screens)
-- Tab visibility changes
-
-## 🎯 Interactive Hover Effects
-
-The cursor automatically enhances user interaction by:
-
-1. **Detecting clickable elements** - Links, buttons, form controls
-2. **Visual feedback** - Size and border changes on hover
-3. **Smooth transitions** - 200ms CSS transitions for elegant effects
-
 ## 🏗️ TypeScript Support
 
 Full TypeScript definitions included:
