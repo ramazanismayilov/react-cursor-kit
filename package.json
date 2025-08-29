@@ -1,6 +1,6 @@
 {
   "name": "react-cursor-kit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A customizable cursor follower component for React",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
