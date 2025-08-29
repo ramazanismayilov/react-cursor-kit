@@ -130,22 +130,6 @@ export default App;
 />
 ```
 
-### Gaming Style
-
-```tsx
-<CursorKit
-  innerSize={2}
-  innerColor="#ff0040"
-  outerSize={60}
-  outerColor="#ff004020"
-  outerBorderWidth={3}
-  outerBorderStyle="dashed"
-  outerBorderColor="#ff0040"
-  outerScale={1.3}
-  trailingSpeed={5}
-/>
-```
-
 ## 🔧 Advanced Configuration
 
 ### Custom Clickable Elements
@@ -228,106 +212,6 @@ export interface PositionType {
 }
 ```
 
-## 🎮 Demo & Examples
-
-Visit our [interactive demo](https://react-cursor-kit-demo.vercel.app) to see all the features in action.
-
-### Running the Example Locally
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/react-cursor-kit.git
-   cd react-cursor-kit
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Run the example:
-   ```bash
-   cd example
-   npm install
-   npm start
-   ```
-
-## 🛠️ Development
-
-To contribute to this project:
-
-1. **Fork** the repository
-2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
-3. **Commit** your changes: `git commit -m 'Add amazing feature'`
-4. **Push** to the branch: `git push origin feature/amazing-feature`
-5. **Open** a Pull Request
-
-### Building the Package
-
-```bash
-npm run build     # Build the package
-npm run dev       # Development mode
-npm run type-check # TypeScript validation
-npm run lint      # ESLint check
-```
-
-## ⚠️ Browser Support
-
-- **Chrome** 60+
-- **Firefox** 55+
-- **Safari** 12+
-- **Edge** 79+
-
-## 🎯 Use Cases
-
-Perfect for:
-
-- **Creative portfolios** - Add artistic flair to your work
-- **Gaming websites** - Create immersive experiences
-- **Modern web apps** - Enhance user interaction
-- **Landing pages** - Make a memorable first impression
-- **Interactive demos** - Guide user attention
-
-## 📱 Mobile Behavior
-
-On touch devices, the cursor component automatically:
-- Hides itself to avoid conflicts
-- Preserves native touch interactions
-- Maintains performance
-
-## 🎨 Customization Tips
-
-1. **Blend modes** - Use `mixBlendMode` in styles for creative effects
-2. **Shadows** - Add `boxShadow` for glow effects
-3. **Gradients** - Use CSS gradients for colorful cursors
-4. **Animations** - Combine with CSS animations for complex effects
-
-## 🐛 Troubleshooting
-
-### Cursor not appearing?
-- Ensure the component is rendered at the top level
-- Check that `showSystemCursor` is set to `false`
-- Verify no CSS is overriding the cursor styles
-
-### Performance issues?
-- Reduce `trailingSpeed` value
-- Use simpler colors (avoid complex gradients)
-- Check for other animation conflicts
-
-### Mobile conflicts?
-- The component automatically hides on mobile
-- Use media queries if you need custom mobile behavior
-
 ## 📄 License
 
-MIT © 2024 React Cursor Kit. See [LICENSE](LICENSE) for details.
-
-## 🙏 Acknowledgments
-
-- Inspired by modern web design trends
-- Built with performance and accessibility in mind
-- Community feedback and contributions welcome
-
----
-
-**Made with ❤️ for the React community**
+MIT © 2025 React Cursor Kit
