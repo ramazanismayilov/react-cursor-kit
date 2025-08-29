@@ -1,6 +1,6 @@
 {
   "name": "@ri-dev/react-cursor-kit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "React customizable cursor kit: custom mouse, cursor follower, trailing cursor, and animated cursor components",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
