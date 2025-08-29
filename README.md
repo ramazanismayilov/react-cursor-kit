@@ -12,11 +12,11 @@ A powerful and highly customizable cursor component for React applications. Crea
 ## 🚀 Installation
 
 ```bash
-npm install react-cursor-kit
+npm install @ri-dev/react-cursor-kit
 # or
-yarn add react-cursor-kit
+yarn add @ri-dev/react-cursor-kit
 # or
-pnpm add react-cursor-kit
+pnpm add @ri-dev/react-cursor-kit
 ```
 
 ## 📖 Basic Usage
@@ -25,7 +25,7 @@ The simplest way to get started:
 
 ```tsx
 import React from 'react';
-import CursorKit from 'react-cursor-kit';
+import CursorKit from '@ri-dev/react-cursor-kit';
 
 function App() {
   return (
