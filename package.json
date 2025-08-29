@@ -1,0 +1,37 @@
+{
+  "name": "react-cursor-follow",
+  "version": "1.0.0",
+  "description": "A customizable cursor follower component for React",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "dev": "npm start",
+    "example": "cd example && npm start"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.24",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^5.0.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "cursor",
+    "custom-cursor",
+    "cursor-follow",
+    "ui"
+  ],
+  "author": "",
+  "license": "MIT"
+}
