@@ -6,8 +6,8 @@ const CursorFollow: React.FC<CursorFollowProps> = ({
   innerColor = '#FF2D00',
   innerBorder = '',
   outerSize = 50,
-  outerColor = 'transparent',
-  outerAlpha = 0.4,
+  outerColor = '',
+  outerOpacity = 0.1,
   outerScale = 1,
   outerBorder = '2px solid #FF2D00',
   outerStyle = {},
@@ -188,11 +188,11 @@ const CursorFollow: React.FC<CursorFollowProps> = ({
     width: outerSize,
     height: outerSize,
     backgroundColor: outerColor,
-    opacity: outerAlpha,
+    opacity: outerOpacity,
     border: outerBorder,
     boxSizing: 'border-box',
     ...outerStyle,
-  }), [baseStyle, outerSize, outerColor, outerAlpha, outerBorder, outerStyle]);
+  }), [baseStyle, outerSize, outerColor, outerOpacity, outerBorder, outerStyle]);
 
   const innerCursorStyle: React.CSSProperties = useMemo(() => ({
     ...baseStyle,

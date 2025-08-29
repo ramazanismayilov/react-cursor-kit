@@ -1,6 +1,6 @@
-# React Cursor Follow
+# React Cursor Kit
 
-A customizable cursor follower component for React applications. This package provides a smooth, customizable cursor effect with an inner and outer circle that follows the user's mouse movements.
+A customizable cursor kit component for React applications. This package provides a smooth, customizable cursor effect with an inner and outer circle that follows the user's mouse movements.
 
 ## Features
 
@@ -8,27 +8,27 @@ A customizable cursor follower component for React applications. This package pr
 - ⚡ Smooth animation with configurable speed
 - 🖱️ Automatic handling of clickable elements
 - 📱 Mobile-friendly
-- 🎭 Works with any React application (Next.js, CRA, etc.)
+- 🎭 Works with any React application
 - 🛠️ Written in TypeScript with full type definitions
 
 ## Installation
 
 ```bash
-npm install react-cursor-follow
+npm install react-cursor-kit
 # or
-yarn add react-cursor-follow
+yarn add react-cursor-kit
 ```
 
 ## Basic Usage
 
 ```tsx
 import React from 'react';
-import CursorFollow from 'react-cursor-follow';
+import CursorKit from 'react-cursor-kit';
 
 function App() {
   return (
     <div>
-      <CursorFollow />
+      <CursorKit />
       {/* Your app content */}
     </div>
   );
@@ -45,7 +45,7 @@ export default App;
 | `innerColor` | `string` | `'#fff'` | Color of the inner circle (any valid CSS color) |
 | `outerSize` | `number` | `32` | Size of the outer circle in pixels |
 | `outerColor` | `string` | `'#fff'` | Color of the outer circle (any valid CSS color) |
-| `outerAlpha` | `number` | `0.4` | Opacity of the outer circle (0 to 1) |
+| `outerOpacity` | `number` | `0.4` | Opacity of the outer circle (0 to 1) |
 | `outerScale` | `number` | `1` | Scale factor for the outer circle when hovering over clickable elements |
 | `trailingSpeed` | `number` | `8` | Speed of the outer circle follow effect (higher = slower) |
 | `showSystemCursor` | `boolean` | `false` | Whether to show the default system cursor |
@@ -57,17 +57,17 @@ export default App;
 
 ```tsx
 import React from 'react';
-import CursorFollow from 'react-cursor-follow';
+import CursorKit from 'react-cursor-kit';
 
 function App() {
   return (
     <div>
-      <CursorFollow 
+      <CursorKit 
         innerSize={10}
         innerColor="#ff3366"
         outerSize={40}
         outerColor="#3366ff"
-        outerAlpha={0.3}
+        outerOpacity={0.3}
         outerScale={1.5}
         trailingSpeed={6}
         showSystemCursor={false}

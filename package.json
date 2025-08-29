@@ -1,5 +1,5 @@
 {
-  "name": "react-cursor-follow",
+  "name": "react-cursor-kit",
   "version": "1.0.0",
   "description": "A customizable cursor follower component for React",
   "main": "dist/index.js",
