@@ -1,51 +1,38 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { CursorFollowProps, PositionType } from './types';
 
-const CursorFollow: React.FC<CursorFollowProps> = ({
+const CursorKit: React.FC<CursorFollowProps> = ({
   innerSize = 7,
-  innerColor = '#FF2D00',
-  innerBorder = '',
-  outerSize = 50,
-  outerColor = '',
-  outerOpacity = 0.1,
-  outerScale = 1,
-  outerBorder = '2px solid #FF2D00',
-  outerStyle = {},
+  innerColor = 'rgba(255, 0, 0, 1)',
+  innerBorderWidth = 0,
+  innerBorderStyle = '',
+  innerBorderColor = '',
+  innerBorderRadius = '50%',
   innerStyle = {},
-  trailingSpeed = 4,
+
+  outerSize = 50,
+  outerColor = 'transparent',
+  outerOpacity = 0.8,
+  outerScale = 1,
+  outerBorderWidth = 1,
+  outerBorderStyle = 'solid',
+  outerBorderColor = 'rgba(255, 0, 0, 1)',
+  outerBorderRadius = '50%',
+  outerStyle = {},
+
+  trailingSpeed = 10,
   showSystemCursor = false,
 }) => {
   const [mousePosition, setMousePosition] = useState<PositionType>({ x: 0, y: 0 });
   const [outerPosition, setOuterPosition] = useState<PositionType>({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
 
   const cursorOuterRef = useRef<HTMLDivElement>(null);
   const cursorInnerRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number>();
   const isAnimatingRef = useRef(false);
 
-  // Memoized viewport boundaries calculation
-  const boundaries = useMemo(() => {
-    const { innerWidth, innerHeight } = window;
-    const scaledOuterSize = outerSize * outerScale;
-
-    return {
-      inner: {
-        maxX: innerWidth - innerSize,
-        maxY: innerHeight - innerSize,
-        minX: 0,
-        minY: 0
-      },
-      outer: {
-        maxX: innerWidth - scaledOuterSize,
-        maxY: innerHeight - scaledOuterSize,
-        minX: 0,
-        minY: 0
-      }
-    };
-  }, [innerSize, outerSize, outerScale]);
-
-  // Optimized position calculation with boundary constraints
   const calculateBoundedPosition = useCallback((
     targetX: number,
     targetY: number,
@@ -61,7 +48,6 @@ const CursorFollow: React.FC<CursorFollowProps> = ({
     };
   }, []);
 
-  // Smooth animation loop with performance optimizations
   const animateCursor = useCallback(() => {
     const outerElement = cursorOuterRef.current;
     const innerElement = cursorInnerRef.current;
@@ -71,27 +57,14 @@ const CursorFollow: React.FC<CursorFollowProps> = ({
       return;
     }
 
-    // Calculate inner cursor position (follows mouse directly)
-    const innerTarget = calculateBoundedPosition(
-      mousePosition.x,
-      mousePosition.y,
-      innerSize
-    );
-
-    // Calculate outer cursor position with smooth trailing
-    const outerTarget = calculateBoundedPosition(
-      mousePosition.x,
-      mousePosition.y,
-      outerSize,
-      outerScale
-    );
+    const innerTarget = calculateBoundedPosition(mousePosition.x, mousePosition.y, innerSize);
+    const outerTarget = calculateBoundedPosition(mousePosition.x, mousePosition.y, outerSize, outerScale);
 
     const newOuterX = outerPosition.x + (outerTarget.x - outerPosition.x) / trailingSpeed;
     const newOuterY = outerPosition.y + (outerTarget.y - outerPosition.y) / trailingSpeed;
 
     setOuterPosition({ x: newOuterX, y: newOuterY });
 
-    // Apply transforms using GPU acceleration
     innerElement.style.transform = `translate3d(${innerTarget.x}px, ${innerTarget.y}px, 0)`;
     outerElement.style.transform = `translate3d(${newOuterX}px, ${newOuterY}px, 0) scale(${outerScale})`;
 
@@ -106,9 +79,17 @@ const CursorFollow: React.FC<CursorFollowProps> = ({
     trailingSpeed
   ]);
 
-  // Event handlers with performance optimizations
+  const isInteractiveElement = (element: Element): boolean => {
+    const interactiveSelectors = ['a', 'button', '[role="button"]', '[tabindex]'];
+    return interactiveSelectors.some(selector =>
+      element.matches(selector) || element.closest(selector)
+    );
+  };
+
   const handleMouseMove = useCallback((e: MouseEvent) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
+    const target = e.target as Element;
+    setIsHovering(isInteractiveElement(target));
   }, []);
 
   const handleMouseEnter = useCallback(() => {
@@ -137,7 +118,6 @@ const CursorFollow: React.FC<CursorFollowProps> = ({
     }
   }, []);
 
-  // Setup and cleanup effects
   useEffect(() => {
     const events = [
       { type: 'mousemove', handler: handleMouseMove },
@@ -145,24 +125,20 @@ const CursorFollow: React.FC<CursorFollowProps> = ({
       { type: 'mouseleave', handler: handleMouseLeave },
     ] as const;
 
-    // Add event listeners with passive option for better performance
     events.forEach(({ type, handler }) => {
       document.addEventListener(type, handler, { passive: true });
     });
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
-    // Start animation immediately
     handleMouseEnter();
 
     return () => {
-      // Cleanup all event listeners
       events.forEach(({ type, handler }) => {
         document.removeEventListener(type, handler);
       });
       document.removeEventListener('visibilitychange', handleVisibilityChange);
 
-      // Cancel any pending animation frame
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
@@ -170,7 +146,6 @@ const CursorFollow: React.FC<CursorFollowProps> = ({
     };
   }, [handleMouseMove, handleMouseEnter, handleMouseLeave, handleVisibilityChange]);
 
-  // Memoized base styles for better performance
   const baseStyle: React.CSSProperties = useMemo(() => ({
     position: 'fixed',
     borderRadius: '50%',
@@ -183,28 +158,60 @@ const CursorFollow: React.FC<CursorFollowProps> = ({
     perspective: 1000,
   }), []);
 
-  const outerCursorStyle: React.CSSProperties = useMemo(() => ({
-    ...baseStyle,
-    width: outerSize,
-    height: outerSize,
-    backgroundColor: outerColor,
-    opacity: outerOpacity,
-    border: outerBorder,
-    boxSizing: 'border-box',
-    ...outerStyle,
-  }), [baseStyle, outerSize, outerColor, outerOpacity, outerBorder, outerStyle]);
+  const outerCursorStyle: React.CSSProperties = useMemo(() => {
+    const size = isHovering ? outerSize + 20 : outerSize;
+    const borderWidth = isHovering ? outerBorderWidth + 1 : outerBorderWidth;
+    const opacity = isHovering ? Math.min(outerOpacity + 0.2, 1) : outerOpacity;
+
+    return {
+      ...baseStyle,
+      width: size,
+      height: size,
+      backgroundColor: outerColor,
+      opacity: opacity,
+      borderWidth: `${borderWidth}px`,
+      borderStyle: outerBorderStyle,
+      borderColor: outerBorderColor,
+      borderRadius: typeof outerBorderRadius === 'number' ? `${outerBorderRadius}px` : outerBorderRadius,
+      boxSizing: 'border-box',
+      transition: 'width 0.2s ease, height 0.2s ease, border-width 0.2s ease, opacity 0.2s ease',
+      ...outerStyle,
+    };
+  }, [
+    baseStyle,
+    outerSize,
+    outerColor,
+    outerOpacity,
+    outerBorderWidth,
+    outerBorderStyle,
+    outerBorderColor,
+    outerBorderRadius,
+    outerStyle,
+    isHovering
+  ]);
 
   const innerCursorStyle: React.CSSProperties = useMemo(() => ({
     ...baseStyle,
     width: innerSize,
     height: innerSize,
     backgroundColor: innerColor,
-    border: innerBorder,
+    borderWidth: `${innerBorderWidth}px`,
+    borderStyle: innerBorderStyle,
+    borderColor: innerBorderColor,
+    borderRadius: typeof innerBorderRadius === 'number' ? `${innerBorderRadius}px` : innerBorderRadius,
     boxSizing: 'border-box',
     ...innerStyle,
-  }), [baseStyle, innerSize, innerColor, innerBorder, innerStyle]);
+  }), [
+    baseStyle,
+    innerSize,
+    innerColor,
+    innerBorderWidth,
+    innerBorderStyle,
+    innerBorderColor,
+    innerBorderRadius,
+    innerStyle
+  ]);
 
-  // Global cursor hiding styles
   const globalCursorStyles = useMemo(() => {
     if (showSystemCursor) return '';
 
@@ -219,28 +226,22 @@ const CursorFollow: React.FC<CursorFollowProps> = ({
     `;
   }, [showSystemCursor]);
 
-  // Don't render if not visible
   if (!isVisible) return null;
 
   return (
     <>
-      {/* Outer Cursor */}
       <div
         ref={cursorOuterRef}
         style={outerCursorStyle}
         aria-hidden="true"
         data-cursor="outer"
       />
-
-      {/* Inner Cursor */}
       <div
         ref={cursorInnerRef}
         style={innerCursorStyle}
         aria-hidden="true"
         data-cursor="inner"
       />
-
-      {/* Global cursor hiding styles */}
       {globalCursorStyles && (
         <style dangerouslySetInnerHTML={{ __html: globalCursorStyles }} />
       )}
@@ -248,4 +249,4 @@ const CursorFollow: React.FC<CursorFollowProps> = ({
   );
 };
 
-export default React.memo(CursorFollow);
+export default React.memo(CursorKit);

@@ -1,4 +1,4 @@
-import CursorFollow from './CursorFollow';
+import CursorKit from './CursorKit';
 
-export default CursorFollow;
+export default CursorKit;
 export * from './types';
