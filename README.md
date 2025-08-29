@@ -135,7 +135,7 @@ Full TypeScript definitions included:
 export interface CursorFollowProps {
   innerSize?: number;
   innerColor?: string;
-  innerBorderWidth?: number;
+  innerBorderWidth?: number; 
   innerBorderStyle?: string;
   innerBorderColor?: string;
   innerBorderRadius?: number | string;

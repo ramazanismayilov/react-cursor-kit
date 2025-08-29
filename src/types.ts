@@ -14,7 +14,7 @@ export interface CursorFollowProps {
   outerOpacity?: number;
   outerScale?: number;
   outerBorderWidth?: number;
-  outerBorderStyle?: string;
+  outerBorderStyle?: string; 
   outerBorderColor?: string;
   outerBorderRadius?: number | string;
   outerStyle?: CSSProperties;

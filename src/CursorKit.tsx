@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { CursorFollowProps, PositionType } from './types';
 
-const CursorKit: React.FC<CursorFollowProps> = ({
+const CursorKit: React.FC<CursorFollowProps> = ({ 
   innerSize = 7,
   innerColor = 'rgba(255, 0, 0, 1)',
   innerBorderWidth = 0,
