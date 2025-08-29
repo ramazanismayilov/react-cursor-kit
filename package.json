@@ -1,7 +1,7 @@
 {
   "name": "react-cursor-kit",
   "version": "1.0.2",
-  "description": "A customizable cursor kit component for React",
+  "description": "React customizable cursor kit: custom mouse, cursor follower, trailing cursor, and animated cursor components",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,9 +13,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build",
-    "dev": "npm start",
-    "example": "cd example && npm start"
+    "prepare": "npm run build"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
@@ -33,14 +31,14 @@
     "dist"
   ],
   "keywords": [
-    "cursor",
-    "mouse",
-    "react-cursor",
-    "custom-cursor",
-    "custom-mouse",
-    "cursor-follow",
-    "cursor-kit",
-    "trailing-cursor"
+    "react cursor",
+    "custom cursor",
+    "react mouse follower",
+    "cursor animation",
+    "react cursor kit",
+    "cursor trail",
+    "cursor component",
+    "animated cursor react"
   ],
   "author": "Ramazan",
   "license": "MIT",

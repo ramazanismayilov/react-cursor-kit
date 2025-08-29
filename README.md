@@ -5,12 +5,9 @@ A powerful and highly customizable cursor component for React applications. Crea
 ## ✨ Features
 
 - 🎨 **Fully Customizable** - Control every aspect of your cursor's appearance
-- ⚡ **Smooth Animations** - GPU-accelerated with 60fps performance
 - 🖱️ **Smart Hover Detection** - Automatically detects and responds to clickable elements
 - 📱 **Mobile Optimized** - Gracefully handles touch devices
-- 🎭 **Zero Dependencies** - Lightweight and self-contained
 - 🛠️ **TypeScript Ready** - Full type definitions included
-- 🔧 **Performance Focused** - Uses React.memo and optimized hooks
 
 ## 🚀 Installation
 
@@ -62,7 +59,7 @@ export default App;
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `outerSize` | `number` | `50` | Diameter of the outer cursor circle in pixels |
-| `outerColor` | `string` | `'transparent'` | Background color of the outer cursor |
+| `outerColor` | `string` | `''` | Background color of the outer cursor |
 | `outerOpacity` | `number` | `0.8` | Opacity of the outer cursor (0.0 - 1.0) |
 | `outerScale` | `number` | `1` | Scale multiplier for the outer cursor |
 | `outerBorderWidth` | `number` | `1` | Border thickness of the outer cursor in pixels |
@@ -130,13 +127,12 @@ export default App;
 />
 ```
 
-## 🏗️ TypeScript Support
+## ⸆⸉ TypeScript Support
 
 Full TypeScript definitions included:
 
 ```tsx
 export interface CursorFollowProps {
-  // Inner cursor properties
   innerSize?: number;
   innerColor?: string;
   innerBorderWidth?: number;
@@ -145,7 +141,6 @@ export interface CursorFollowProps {
   innerBorderRadius?: number | string;
   innerStyle?: React.CSSProperties;
 
-  // Outer cursor properties
   outerSize?: number;
   outerColor?: string;
   outerOpacity?: number;
@@ -156,7 +151,6 @@ export interface CursorFollowProps {
   outerBorderRadius?: number | string;
   outerStyle?: React.CSSProperties;
 
-  // Behavior properties
   trailingSpeed?: number;
   showSystemCursor?: boolean;
 }
