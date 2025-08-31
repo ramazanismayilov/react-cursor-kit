@@ -1,8 +1,9 @@
 import { CSSProperties } from 'react';
 
-export interface CursorFollowProps {
+export interface CursorKitType {
   innerSize?: number;
   innerColor?: string;
+  innerOpacity?: number
   innerBorderWidth?: number;
   innerBorderStyle?: string;
   innerBorderColor?: string;
@@ -12,9 +13,8 @@ export interface CursorFollowProps {
   outerSize?: number;
   outerColor?: string;
   outerOpacity?: number;
-  outerScale?: number;
   outerBorderWidth?: number;
-  outerBorderStyle?: string; 
+  outerBorderStyle?: string;
   outerBorderColor?: string;
   outerBorderRadius?: number | string;
   outerStyle?: CSSProperties;

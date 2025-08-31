@@ -11,10 +11,13 @@
       "require": "./dist/index.js"
     }
   },
-  "scripts": {
-    "build": "tsc",
-    "prepare": "npm run build"
-  },
+"scripts": {
+  "dev": "vite",
+  "build": "tsc",
+  "prepare": "npm run build",
+  "preview": "vite preview"
+}
+,
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"

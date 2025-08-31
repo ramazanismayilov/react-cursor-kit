@@ -29,11 +29,11 @@ import CursorKit from '@ri-dev/react-cursor-kit';
 
 function App() {
   return (
-    <div>
+    <>
       <CursorKit />
-      <h1>Welcome to my website!</h1>
+      <h1>Custom CursorKit!</h1>
       <button>Hover me to see the magic!</button>
-    </div>
+    </>
   );
 }
 
@@ -47,10 +47,11 @@ export default App;
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `innerSize` | `number` | `7` | Diameter of the inner cursor circle in pixels |
-| `innerColor` | `string` | `'rgba(255, 0, 0, 1)'` | Background color of the inner cursor |
-| `innerBorderWidth` | `number` | `0` | Border thickness of the inner cursor in pixels |
-| `innerBorderStyle` | `string` | `''` | CSS border style (`solid`, `dashed`, `dotted`, etc.) |
-| `innerBorderColor` | `string` | `''` | Color of the inner cursor border |
+| `innerColor` | `string` | `'#ff0000'` | Background color of the inner cursor |
+| `innerOpacity` | `number` | `1` | Opacity of the inner cursor (0.0 - 1.0) |
+| `innerBorderWidth` | `number` | `1` | Border thickness of the inner cursor in pixels |
+| `innerBorderStyle` | `string` | `'solid'` | CSS border style (`solid`, `dashed`, `dotted`, etc.) |
+| `innerBorderColor` | `string` | `'#ff0000'` | Color of the inner cursor border |
 | `innerBorderRadius` | `number \| string` | `'50%'` | Border radius of the inner cursor |
 | `innerStyle` | `CSSProperties` | `{}` | Additional custom styles for the inner cursor |
 
@@ -59,12 +60,12 @@ export default App;
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `outerSize` | `number` | `50` | Diameter of the outer cursor circle in pixels |
-| `outerColor` | `string` | `''` | Background color of the outer cursor |
+| `outerColor` | `string` | `'transparent'` | Background color of the outer cursor |
 | `outerOpacity` | `number` | `0.8` | Opacity of the outer cursor (0.0 - 1.0) |
 | `outerScale` | `number` | `1` | Scale multiplier for the outer cursor |
 | `outerBorderWidth` | `number` | `1` | Border thickness of the outer cursor in pixels |
 | `outerBorderStyle` | `string` | `'solid'` | CSS border style for the outer cursor |
-| `outerBorderColor` | `string` | `'rgba(255, 0, 0, 1)'` | Color of the outer cursor border |
+| `outerBorderColor` | `string` | `'#ff0000'` | Color of the outer cursor border |
 | `outerBorderRadius` | `number \| string` | `'50%'` | Border radius of the outer cursor |
 | `outerStyle` | `CSSProperties` | `{}` | Additional custom styles for the outer cursor |
 
@@ -80,50 +81,47 @@ export default App;
 ### Neon Glow Effect
 
 ```tsx
+  <CursorKit
+    innerSize={8}
+    innerColor="#00ffcc"
+    innerBorderWidth={0}
+    innerStyle={{
+      boxShadow: '0 0 15px #00ffcc, 0 0 30px #00ffcc, 0 0 60px #00ffcc',
+      borderRadius: '50%'
+    }}
+    outerSize={50}
+    outerColor="transparent"
+    outerBorderWidth={2}
+    outerBorderStyle="solid"
+    outerBorderColor="#00ffcc"
+    outerStyle={{
+      boxShadow: '0 0 20px #00ffcc, 0 0 40px #00ffcc',
+      borderRadius: '50%'
+    }}
+    trailingSpeed={12}
+  />
+```
+
+### Fire Cursor
+
+```tsx
 <CursorKit
   innerSize={6}
-  innerColor="#00ff88"
-  outerSize={40}
+  innerColor="#ff3c00"
+  innerStyle={{
+    boxShadow: '0 0 15px #ff3c00, 0 0 30px #ff9a00',
+    borderRadius: '50%'
+  }}
+  outerSize={45}
   outerColor="transparent"
   outerBorderWidth={2}
   outerBorderStyle="solid"
-  outerBorderColor="#00ff88"
+  outerBorderColor="#ff9a00"
   outerStyle={{
-    boxShadow: '0 0 20px #00ff88, inset 0 0 20px #00ff8844'
-  }}
-  trailingSpeed={8}
-/>
-```
-
-### Minimal Dot
-
-```tsx
-<CursorKit
-  innerSize={4}
-  innerColor="#333"
-  outerSize={30}
-  outerColor="transparent"
-  outerBorderWidth={1}
-  outerBorderStyle="solid"
-  outerBorderColor="#33333350"
-  trailingSpeed={12}
-/>
-```
-
-### Colorful Gradient
-
-```tsx
-<CursorKit
-  innerSize={8}
-  innerColor="white"
-  outerSize={45}
-  outerColor="transparent"
-  outerStyle={{
-    background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1)',
+    boxShadow: '0 0 25px #ff3c00, 0 0 50px #ff9a00',
     borderRadius: '50%'
   }}
-  outerOpacity={0.6}
-  trailingSpeed={6}
+  trailingSpeed={10}
 />
 ```
 
@@ -132,24 +130,24 @@ export default App;
 Full TypeScript definitions included:
 
 ```tsx
-export interface CursorFollowProps {
+export interface CursorKitType {
   innerSize?: number;
   innerColor?: string;
-  innerBorderWidth?: number; 
+  innerOpacity?: number;
+  innerBorderWidth?: number;
   innerBorderStyle?: string;
   innerBorderColor?: string;
   innerBorderRadius?: number | string;
-  innerStyle?: React.CSSProperties;
+  innerStyle?: CSSProperties;
 
   outerSize?: number;
   outerColor?: string;
   outerOpacity?: number;
-  outerScale?: number;
   outerBorderWidth?: number;
   outerBorderStyle?: string;
   outerBorderColor?: string;
   outerBorderRadius?: number | string;
-  outerStyle?: React.CSSProperties;
+  outerStyle?: CSSProperties;
 
   trailingSpeed?: number;
   showSystemCursor?: boolean;
